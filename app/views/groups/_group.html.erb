@@ -10,9 +10,16 @@
   </p>
 
   <p>
-    <strong>Lista studentów:</strong>
+    <strong>Lista studentów:</strong><br>
     <% group.students.each do |student| %>
       <%= student.imie %> <%= student.nazwisko %><br>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Lista przedmiotów:</strong><br>
+    <% group.courses.each do |course| %>
+      <%= course.nazwa %> <br>
     <% end %>
   </p>
 
