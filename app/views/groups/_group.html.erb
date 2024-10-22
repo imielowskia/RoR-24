@@ -9,4 +9,11 @@
     <%= group.nazwa %>
   </p>
 
+  <p>
+    <strong>Lista studentów:</strong>
+    <% group.students.each do |student| %>
+      <%= student.imie %> <%= student.nazwisko %><br>
+    <% end %>
+  </p>
+
 </div>
