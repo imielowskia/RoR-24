@@ -1,27 +1,12 @@
 <div id="<%= dom_id student %>">
-  <p>
-    <strong>Imie:</strong>
-    <%= student.imie %>
-  </p>
 
-  <p>
-    <strong>Nazwisko:</strong>
-    <%= student.nazwisko %>
-  </p>
-
-  <p>
-    <strong>Indeks:</strong>
-    <%= student.indeks %>
-  </p>
-
-  <p>
-    <strong>Bdate:</strong>
-    <%= student.bdate %>
-  </p>
-
-  <p>
-    <strong>Group:</strong>
-    <%= student.group.nazwa %>
-  </p>
+  <div class="row">
+    <hr>
+    <div class="col"><%= student.imie %></div>
+    <div class="col"><%= student.nazwisko %></div>
+    <div class="col"><%= student.indeks %></div>
+    <div class="col"><%= student.bdate %></div>
+    <div class="col"><%= student.group.nazwa %></div>
+  </div>
 
 </div>

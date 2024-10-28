@@ -2,7 +2,15 @@
 
 <% content_for :title, "Students" %>
 
-<h1>Students</h1>
+<div class="row" style="background-color: #CCCCCC"><h1>Students</h1></div>
+
+<div class="row">
+  <div class="col"><strong>Imie:</strong></div>
+  <div class="col"><strong>Nazwisko:</strong></div>
+  <div class="col"><strong>Indeks:</strong></div>
+  <div class="col"><strong>Data urodzenia:</strong></div>
+  <div class="col"><strong>Group:</strong></div>
+</div>
 
 <div id="students">
   <% @students.each do |student| %>

@@ -1,26 +1,21 @@
 <div id="<%= dom_id group %>">
-  <p>
-    <strong>Nr:</strong>
-    <%= group.nr %>
-  </p>
 
-  <p>
-    <strong>Nazwa:</strong>
-    <%= group.nazwa %>
-  </p>
 
-  <p>
-    <strong>Lista studentów:</strong><br>
-    <% group.students.each do |student| %>
-      <%= student.imie %> <%= student.nazwisko %><br>
-    <% end %>
-  </p>
+  <div class="row">
+    <hr>
+    <div class="col"><%= group.nr %></div>
+    <div class="col"><%= group.nazwa %></div>
+    <div class="col">
+      <% group.students.each do |student| %>
+        <%= student.imie %> <%= student.nazwisko %><br>
+      <% end %>
+    </div>
+    <div class="col">
+      <% group.courses.each do |course| %>
+        <%= course.nazwa %> <br>
+      <% end %>
+    </div>
+  </div>
 
-  <p>
-    <strong>Lista przedmiotów:</strong><br>
-    <% group.courses.each do |course| %>
-      <%= course.nazwa %> <br>
-    <% end %>
-  </p>
 
 </div>

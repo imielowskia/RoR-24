@@ -2,7 +2,14 @@
 
 <% content_for :title, "Groups" %>
 
-<h1>Groups</h1>
+<div class="row" style="background-color: #CCCCCC"><h1>Groups</h1></div>
+
+<div class="row">
+  <div class="col"><strong>Nr:</strong></div>
+  <div class="col"><strong>Nazwa:</strong></div>
+  <div class="col"><strong>Lista studentów:</strong></div>
+  <div class="col"><strong>Lista przedmiotów:</strong></div>
+</div>
 
 <div id="groups">
   <% @groups.each do |group| %>
