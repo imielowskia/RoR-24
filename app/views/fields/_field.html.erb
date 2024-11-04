@@ -1,0 +1,18 @@
+<div id="<%= dom_id field %>">
+
+<div class="row">
+  <hr>
+  <div class="col"><%= field.nazwa %></div>
+  <div class="col">
+    <% field.groups.each do |g| %>
+      <%= g.nazwa %><br>
+    <% end %>
+  </div>
+  <div class="col">
+    <% field.students.each do |s| %>
+      <%= s.IN %><br>
+    <% end %>
+  </div>
+</div>
+
+</div>

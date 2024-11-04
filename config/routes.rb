@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :fields
+  resources :grades
   resources :courses
   resources :students
   resources :groups

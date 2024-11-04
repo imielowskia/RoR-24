@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Fields" %>
+
+<div class="row" style="background-color: #CCCCCC"><h1>Kierunki</h1></div>
+
+<div class="row" style="background-color: rgba(217,227,246,0.75)">
+  <div class="col">
+    <strong>Nazwa:</strong>
+  </div>
+  <div class="col"><strong>Grupy:</strong></div>
+  <div class="col"><strong>Studenci:</strong></div>
+</div>
+
+<div id="fields">
+  <% @fields.each do |field| %>
+    <%= render field %>
+    <p>
+      <%= link_to "Show this field", field, class: "btn btn-sm btn-primary" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New field", new_field_path, class: "btn btn-sm btn-primary" %>
