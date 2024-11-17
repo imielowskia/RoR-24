@@ -7,7 +7,7 @@
     </div>
     <div class="col">
       <% course.groups.each do |group| %>
-        <%= group.nazwa %><br>
+        <%= group.nazwa %> <%= link_to 'Oceny', grade_course_path(course.id, group.id), class: "btn btn-sm btn-primary" %><br>
       <% end %>
     </div>
   </div>

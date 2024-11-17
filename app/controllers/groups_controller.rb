@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
   def edit
   end
 
+
   # POST /groups or /groups.json
   def create
     @group = Group.new(group_params)
