@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[ show edit update destroy ]
+  before_action :set_group, only: %i[ show edit update destroy detailgrade detailgrade_course detailgrade_save]
 
   # GET /groups or /groups.json
   def index
@@ -19,6 +19,41 @@ class GroupsController < ApplicationController
   def edit
   end
 
+
+  def detailgrade
+    @course = Course.find(params[:course_id])
+    @students = @group.students
+  end
+
+  def detailgrade_course
+    @course = Course.find(params[:course_id])
+    @students = @group.students
+  end
+
+  def detailgrade_save
+    @course = Course.find(params[:course_id])
+    @students = @group.students
+    oceny = params['oceny']
+    @students.each do |s|
+      soceny = oceny[s.id.to_s]
+      soceny.each do |o|
+        if o[1].to_i>0
+          if o[0].to_i>0
+            xg = DetailGrade.find(o[0].to_i)
+            xg.grade = o[1].to_f
+          else
+            xg = DetailGrade.new
+            xg.student_id = s.id
+            xg.course_id = @course.id
+            xg.grade = xg.grade = o[1].to_f
+            xg.data = Date.today
+          end
+          xg.save
+        end
+      end
+    end
+    redirect_to detailgrade_group_path(@group.id, @course.id)
+  end
 
   # POST /groups or /groups.json
   def create

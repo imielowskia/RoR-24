@@ -1,0 +1,31 @@
+<div class="container bg-secondary bg-gradient bg-opacity-10">
+
+  <div class="row" style="background-color: #BBBBBB">
+    <h1> Grupa <%= @group.nazwa  %></h1>
+  </div>
+  <div class="row" style="background-color: #EFEFEF">
+    <div class="col">
+      <h2> Oceny cząstkowe <%= @course.nazwa %> </h2>
+    </div>
+    <div class="col"> <%= link_to "Oceń", detailgrade_course_path(@group.id, @course.id) , class: "btn btn-sm btn-primary" %> </div>
+    <hr>
+  </div>
+
+
+  <%= form_with url: detailgrade_save_path do |form| %>
+    <% @students.each do |s| %>
+      <div class="row border-bottom">
+        <div class="col">
+          <%= s.IN %>
+        </div>
+        <div class="col">
+          <% s.detail_grades.where(course_id: @course.id).each do |g| %>
+            <%= form.number_field 'oceny['+s.id.to_s+']'+'['+g.id.to_s+']', value: g.grade, in: 0.0..5.0, step: 0.5 %> <%= g.data %> <br>
+          <% end %>
+          <%= form.number_field 'oceny['+s.id.to_s+']'+'[0]', value: 0, in: 0.0..5.0, step: 0.5 %>
+        </div>
+      </div>
+    <% end %>
+    <%= form.submit "Zapisz", class: "btn btn-sm btn-primary" %>
+  <% end %>
+</div>

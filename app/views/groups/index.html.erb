@@ -1,24 +1,24 @@
+
 <p style="color: green"><%= notice %></p>
+<div class="container bg-secondary bg-gradient bg-opacity-10">
+  <div class="row" style="background-color: #BBBBBB">
+    <div class="col"><h1>Groups</h1></div>
+    <div class="col"><%= link_to "New group", new_group_path, class: "btn btn-sm btn-primary" %></div>
+  </div>
 
-<% content_for :title, "Groups" %>
-
-<div class="row" style="background-color: #CCCCCC"><h1>Groups</h1></div>
 
 <div class="row">
   <div class="col"><strong>Nr:</strong></div>
   <div class="col"><strong>Nazwa:</strong></div>
   <div class="col"><strong>Kierunek:</strong></div>
   <div class="col"><strong>Lista studentów:</strong></div>
-  <div class="col"><strong>Lista przedmiotów:</strong></div>
+  <div class="col"></div>
 </div>
 
 <div id="groups">
   <% @groups.each do |group| %>
     <%= render group %>
-    <p>
-      <%= link_to "Show this group", group, class: "btn btn-sm btn-primary" %>
-    </p>
   <% end %>
 </div>
 
-<%= link_to "New group", new_group_path, class: "btn btn-sm btn-primary" %>
+</div>

@@ -11,11 +11,18 @@
         <%= student.imie %> <%= student.nazwisko %><br>
       <% end %>
     </div>
-    <div class="col">
-      <% group.courses.each do |course| %>
-        <%= course.nazwa %> <br>
-      <% end %>
+    <div class="col"><%= link_to "Show this group", group, class: "btn btn-sm btn-primary" %></div>
+    <hr>
+  </div>
+
+
+  <% group.courses.each do |course| %>
+    <div class="row">
+      <div class="col"> <%= course.nazwa %> </div>
+      <div class="col"> <%= link_to "Oceny cząstkowe", detailgrade_group_path(group.id, course.id ), class: "btn btn-sm btn-primary" %> </div>
+      <hr>
     </div>
+  <% end %>
   </div>
 
 

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   get 'course/:id/group/:group_id/grade', to: 'courses#grade_group', as: 'grade_group'
   post 'course/:id/group/:group_id/save', to: 'courses#grade_save', as: 'grade_save'
 
+  get 'group/:id/course/:course_id', to: 'groups#detailgrade', as: 'detailgrade_group'
+  get 'group/:id/course/:course_id/grade', to: 'groups#detailgrade_course', as: 'detailgrade_course'
+  post 'group/:id/course/:course_id/save', to: 'groups#detailgrade_save', as: 'detailgrade_save'
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
