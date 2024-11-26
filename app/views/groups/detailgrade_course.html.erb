@@ -20,7 +20,7 @@
         </div>
         <div class="col">
           <% s.detail_grades.where(course_id: @course.id).each do |g| %>
-            <%= form.number_field 'oceny['+s.id.to_s+']'+'['+g.id.to_s+']', value: g.grade, in: 0.0..5.0, step: 0.5 %> <%= g.data %> <br>
+            <%= form.number_field 'oceny['+s.id.to_s+']'+'['+g.id.to_s+']', value: g.grade, in: 0.0..5.0, step: 0.5 %>  <br>
           <% end %>
           <%= form.number_field 'oceny['+s.id.to_s+']'+'[0]', value: 0, in: 0.0..5.0, step: 0.5 %>
         </div>
