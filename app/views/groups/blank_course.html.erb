@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "grade_cg_#{@group.id}_#{@course.id}" do %>
+  <div class="row">
+    <div class="col"> <%= @course.nazwa %> </div>
+    <div class="col"> <%= link_to "Oceny cząstkowe", detailgrade_group_path(@group.id, @course.id ), data: {turbo_frame: "grade_cg_"+@group.id.to_s+"_"+@course.id.to_s}, class: "btn btn-sm btn-primary" %> </div>
+    <hr>
+  </div>
+<% end %>
+
+

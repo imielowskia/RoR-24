@@ -2,7 +2,10 @@
 
 <div class="row" style="background-color: #CCCCCC"><h1>Editing group<h1></div>
 
-<%= render "form", group: @group %>
+<%= turbo_frame_tag "Group_edit" do %>
+  <%= render "form", group: @group %>
+<% end %>
+
 
 <br>
 

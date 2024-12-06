@@ -1,9 +1,10 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[ show edit update destroy detailgrade detailgrade_course detailgrade_save]
+  before_action :set_group, only: %i[ show edit update destroy detailgrade detailgrade_course detailgrade_save blank_course ]
 
   # GET /groups or /groups.json
   def index
     @groups = Group.all
+    @licznik = Time.now()
   end
 
   # GET /groups/1 or /groups/1.json
@@ -55,14 +56,19 @@ class GroupsController < ApplicationController
     redirect_to detailgrade_group_path(@group.id, @course.id)
   end
 
+  def blank_course
+    @course = Course.find(params[:course_id])
+  end
+
   # POST /groups or /groups.json
   def create
     @group = Group.new(group_params)
-
+    @groups = Group.all
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -72,10 +78,12 @@ class GroupsController < ApplicationController
 
   # PATCH/PUT /groups/1 or /groups/1.json
   def update
+    @groups = Group.all
     respond_to do |format|
       if @group.update(group_params)
         format.html { redirect_to @group, notice: "Group was successfully updated." }
         format.json { render :show, status: :ok, location: @group }
+        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -86,10 +94,12 @@ class GroupsController < ApplicationController
   # DELETE /groups/1 or /groups/1.json
   def destroy
     @group.destroy!
+    @groups = Group.all
 
     respond_to do |format|
       format.html { redirect_to groups_path, status: :see_other, notice: "Group was successfully destroyed." }
       format.json { head :no_content }
+      format.turbo_stream
     end
   end
 

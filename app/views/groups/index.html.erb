@@ -1,24 +1,33 @@
 
 <p style="color: green"><%= notice %></p>
-<div class="container bg-secondary bg-gradient bg-opacity-10">
-  <div class="row" style="background-color: #BBBBBB">
+
+<div class="container">
+  <div class="row d-flex align-items-center" style="background-color: #BBBBBB">
     <div class="col"><h1>Groups</h1></div>
-    <div class="col"><%= link_to "New group", new_group_path, class: "btn btn-sm btn-primary" %></div>
+    <div class="col"><%= link_to "New group", new_group_path, data:{turbo_frame: "Group_edit"},  class: "btn btn-sm btn-primary" %></div>
+    <div class="col"><%= @licznik %></div>
   </div>
 
+  <%= turbo_frame_tag "Group_edit" %>
 
-<div class="row">
-  <div class="col"><strong>Nr:</strong></div>
-  <div class="col"><strong>Nazwa:</strong></div>
-  <div class="col"><strong>Kierunek:</strong></div>
-  <div class="col"><strong>Lista studentów:</strong></div>
-  <div class="col"></div>
-</div>
+  <div class="row">
+    <div class="col"><strong>Nr:</strong></div>
+    <div class="col"><strong>Nazwa:</strong></div>
+    <div class="col"><strong>Kierunek:</strong></div>
+    <div class="col"><strong>Lista studentów:</strong></div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
 
-<div id="groups">
-  <% @groups.each do |group| %>
-    <%= render group %>
+  <%= turbo_frame_tag "Groups" do %>
+    <div id="groups">
+      <% @groups.each do |group| %>
+        <%= render group %>
+        <div class="row" style="background-color: #8e9ebd"><hr> </div>
+      <% end %>
+    </div>
   <% end %>
-</div>
+
+
 
 </div>

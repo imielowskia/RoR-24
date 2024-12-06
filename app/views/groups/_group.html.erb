@@ -1,29 +1,35 @@
 <div id="<%= dom_id group %>">
-
-
-  <div class="row">
-    <hr>
-    <div class="col"><%= group.nr %></div>
-    <div class="col"><%= group.nazwa %></div>
-    <div class="col"><%= group.field.nazwa %></div>
-    <div class="col">
-      <% group.students.each do |student| %>
-        <%= student.imie %> <%= student.nazwisko %><br>
-      <% end %>
-    </div>
-    <div class="col"><%= link_to "Show this group", group, class: "btn btn-sm btn-primary" %></div>
-    <hr>
-  </div>
-
-
-  <% group.courses.each do |course| %>
+  <%= turbo_frame_tag group do %>
     <div class="row">
-      <div class="col"> <%= course.nazwa %> </div>
-      <div class="col"> <%= link_to "Oceny cząstkowe", detailgrade_group_path(group.id, course.id ), class: "btn btn-sm btn-primary" %> </div>
+      <hr>
+      <div class="col"><%= group.nr %></div>
+      <div class="col"><%= group.nazwa %></div>
+      <div class="col"><%= group.field.nazwa %></div>
+      <div class="col">
+        <% group.students.each do |student| %>
+          <%= student.imie %> <%= student.nazwisko %><br>
+        <% end %>
+      </div>
+      <div class="col"><%= link_to "Edit this group", edit_group_path(group), data: {turbo_frame: "Group_edit"}, class: "btn btn-sm btn-primary" %></div>
+      <div class="col"><%= button_to "Destroy this group", group, method: :delete, class: "btn btn-sm btn-danger" %></div>
       <hr>
     </div>
-  <% end %>
-  </div>
 
 
-</div>
+    <% group.courses.each do |course| %>
+      <%= turbo_frame_tag "grade_cg_"+group.id.to_s+"_"+course.id.to_s do %>
+        <div class="row">
+          <div class="col"> <%= course.nazwa %> </div>
+          <div class="col"> <%= link_to "Oceny cząstkowe", detailgrade_group_path(group.id, course.id ), data: {turbo_frame: "grade_cg_"+group.id.to_s+"_"+course.id.to_s}, class: "btn btn-sm btn-primary" %> </div>
+          <hr>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+
+
+<% end %>
+
+
+
+

@@ -1,37 +1,44 @@
-<%= form_with(model: group) do |form| %>
-  <% if group.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+<%= turbo_frame_tag "Group_edit" do %>
+  <%= form_with(model: group) do |form| %>
+    <% if group.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-      <ul>
-        <% group.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% group.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="container">
+      <div class="row">
+        <hr>
+        <div class="col"><%= form.text_field :nr %></div>
+        <div class="col"><%= form.text_field :nazwa %></div>
+        <div class="col"><%= form.collection_select :field_id, Field.all, :id, :nazwa %></div>
+        <div class="col"> </div>
+        <div class="col"> <%= form.submit "Zapisz" , class: "btn btn-sm btn-primary"%>  </div>
+        <div class="col"> <%= link_to "Back to groups", groups_path, class: "btn btn-sm btn-primary" %></div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <strong><%= form.label :course_ids, "Courses" %></strong>
+          <div>
+            <%= form.collection_check_boxes :course_ids, Course.all, :id, :nazwa do |course| %>
+              <div class="form-check form-check-inline">
+                <%= course.check_box(class: "form-check-input") %>
+                <%= course.label(class: "form-check-label") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <hr>
+      </div>
     </div>
+
   <% end %>
-
-  <div>
-    <%= form.label :nr, style: "display: block" %>
-    <%= form.text_field :nr %>
-  </div>
-
-  <div>
-    <%= form.label :nazwa, style: "display: block" %>
-    <%= form.text_field :nazwa %>
-  </div>
-
-  <div>
-    <%= form.label :field, style: "display: block" %>
-    <%= form.collection_select :field_id, Field.all, :id, :nazwa %>
-  </div>
-
-  <div>
-    <%= form.label :courses, style: "display: block" %>
-    <%= form.collection_check_boxes :course_ids, Course.all, :id, :nazwa %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>
+
+

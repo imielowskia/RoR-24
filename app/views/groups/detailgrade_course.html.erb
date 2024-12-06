@@ -3,29 +3,37 @@
   <div class="row" style="background-color: #BBBBBB">
     <h1> Grupa <%= @group.nazwa  %></h1>
   </div>
-  <div class="row" style="background-color: #EFEFEF">
-    <div class="col">
-      <h2> Oceny cząstkowe <%= @course.nazwa %> </h2>
-    </div>
-    <div class="col"> <%= link_to "Oceń", detailgrade_course_path(@group.id, @course.id) , class: "btn btn-sm btn-primary" %> </div>
-    <hr>
-  </div>
 
 
-  <%= form_with url: detailgrade_save_path do |form| %>
-    <% @students.each do |s| %>
-      <div class="row border-bottom">
-        <div class="col">
-          <%= s.IN %>
-        </div>
-        <div class="col">
-          <% s.detail_grades.where(course_id: @course.id).each do |g| %>
-            <%= form.number_field 'oceny['+s.id.to_s+']'+'['+g.id.to_s+']', value: g.grade, in: 0.0..5.0, step: 0.5 %>  <br>
-          <% end %>
-          <%= form.number_field 'oceny['+s.id.to_s+']'+'[0]', value: 0, in: 0.0..5.0, step: 0.5 %>
-        </div>
+  <%= turbo_frame_tag "grade_cg_"+@group.id.to_s+"_"+@course.id.to_s do %>
+    <div class="row" style="background-color: #94b1d1">
+      <div class="col">
+        <h4> Oceny cząstkowe <%= @course.nazwa %> </h4>
       </div>
+      <hr>
+    </div>
+    <%= form_with url: detailgrade_save_path do |form| %>
+      <% @students.each do |s| %>
+        <div class="row" style="background-color: #547faf">
+          <div class="col">Student</div>
+          <div class="col">Ocena</div>
+        </div>
+        <div class="row border-bottom" style="background-color: #8ce3dc" >
+          <div class="col">
+            <%= s.IN %>
+          </div>
+          <div class="col">
+            <% s.detail_grades.where(course_id: @course.id).each do |g| %>
+              <%= form.number_field 'oceny['+s.id.to_s+']'+'['+g.id.to_s+']', value: g.grade, in: 0.0..5.0, step: 0.5 %>  <br>
+            <% end %>
+            <%= form.number_field 'oceny['+s.id.to_s+']'+'[0]', value: 0, in: 0.0..5.0, step: 0.5 %>
+          </div>
+        </div>
+      <% end %>
+      <%= form.submit "Zapisz", class: "btn btn-sm btn-primary" %>
     <% end %>
-    <%= form.submit "Zapisz", class: "btn btn-sm btn-primary" %>
   <% end %>
+
+
+
 </div>

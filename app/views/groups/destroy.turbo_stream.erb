@@ -1,0 +1,8 @@
+<%= turbo_stream.update('Groups') do%>
+  <div id="groups">
+    <% @groups.each do |group| %>
+      <%= render group %>
+      <div class="row" style="background-color: #8e9ebd"><hr> </div>
+    <% end %>
+  </div>
+<% end %>
